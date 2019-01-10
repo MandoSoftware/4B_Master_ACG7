@@ -26,7 +26,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Build'
-        build '4B_MASTER_ACG7_TC23x_Sandbox'
+        build '4B_MASTER/4B_MASTER_ACG7_TC23x_Sandbox'
       }
     }
     stage('Integration') {
