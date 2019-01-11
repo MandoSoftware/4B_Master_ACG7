@@ -28,10 +28,6 @@ pipeline {
         stage('Build') {
           steps {
             echo 'Build'
-            b = build(job: '4B_MASTER/4B_MASTER_ACG7_TC23x', propagate: false).result
-            if(b == 'FAILURE') {
-                echo "First job failed"
-                currentBuild.result = 'UNSTABLE' // of FAILURE
             }
         }
         stage('Static Analysis') {
