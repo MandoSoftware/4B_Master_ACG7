@@ -28,15 +28,15 @@ pipeline {
         stage('Build') {
           steps {
             echo 'Build'
-            echo build("4B_MASTER/4B_MASTER_ACG7_TC23x").result
-            currentBuild.result = build("4B_MASTER/4B_MASTER_ACG7_TC23x").result
-          }
+            b = build(job: '4B_MASTER/4B_MASTER_ACG7_TC23x', propagate: false).result
+            if(b == 'FAILURE') {
+                echo "First job failed"
+                currentBuild.result = 'UNSTABLE' // of FAILURE
+            }
         }
         stage('Static Analysis') {
           steps {
             echo 'Static Analysis'
-            echo build("4B_MASTER/4B_MASTER_ACG7_StaticAnalysis").result
-            currentBuild.result = build("4B_MASTER/4B_MASTER_ACG7_StaticAnalysis").result
           }
         }
         stage('Interface Test') {
