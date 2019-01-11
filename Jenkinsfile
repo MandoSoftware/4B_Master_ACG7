@@ -28,15 +28,15 @@ pipeline {
         stage('Build') {
           steps {
             echo 'Build'
-            sh '''echo build("4B_MASTER/4B_MASTER_ACG7_TC23x").result
-
-currentBuild.result = build("4B_MASTER/4B_MASTER_ACG7_TC23x").result
-'''
+            echo build("4B_MASTER/4B_MASTER_ACG7_TC23x").result
+            currentBuild.result = build("4B_MASTER/4B_MASTER_ACG7_TC23x").result
           }
         }
         stage('Static Analysis') {
           steps {
             echo 'Static Analysis'
+            echo build("4B_MASTER/4B_MASTER_ACG7_StaticAnalysis").result
+            currentBuild.result = build("4B_MASTER/4B_MASTER_ACG7_StaticAnalysis").result
           }
         }
         stage('Interface Test') {
