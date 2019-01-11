@@ -23,13 +23,15 @@ pipeline {
         }
       }
     }
-
     stage('Integration') {
       parallel {
-         stage('Build') {
+        stage('Build') {
           steps {
             echo 'Build'
-            build '4B_MASTER/4B_MASTER_ACG7_TC23x_Sandbox'
+            sh '''echo build("4B_MASTER/4B_MASTER_ACG7_TC23x").result
+
+currentBuild.result = build("4B_MASTER/4B_MASTER_ACG7_TC23x").result
+'''
           }
         }
         stage('Static Analysis') {
